@@ -1,0 +1,169 @@
+﻿— Basic Select Statement
+SELECT
+  station_id,
+  name
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 1000
+
+
+
+
+— Joining tables 
+SELECT
+  station_id,
+  name,
+  rental_methods,
+  tripduration
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations` s
+JOIN
+  `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips` t
+ON
+  s.station_id = CAST(t.start_station_id as STRING)
+LIMIT
+ 1000
+
+
+—- Min, Max, and Avg 
+SELECT
+ min(tripduration),
+ avg(tripduration),
+ max(tripduration),
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime between '2018-05-01' and '2018-05-31'
+
+
+
+
+— Min, Max, and Avg with alias        
+SELECT
+ min(tripduration) min_trip,
+ avg(tripduration) avg_trip,
+ max(tripduration) max_trip,
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime between '2018-05-01' and '2018-05-31'
+
+
+
+
+—- Include number of trips in result
+SELECT
+ count(*) num_trips,
+ min(tripduration) min_trip,
+ avg(tripduration) avg_trip,
+ max(tripduration) max_trip,
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime between '2018-05-01' and '2018-05-31'
+
+
+
+
+— Query produce data
+SELECT
+ item,
+ category,
+ amount
+FROM
+ `scenic-energy-335022.bigquery_in_action.produce`
+
+
+– Group by
+SELECT
+ category,
+ sum(amount)
+FROM
+ `scenic-energy-335022.bigquery_in_action.produce`
+group by
+  category
+
+
+
+
+—-- Group by and 
+SELECT
+  start_station_name,
+  count(*) num_trips
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+GROUP BY
+ start_station_name
+ORDER BY
+ num_trips DESC
+
+
+– Filter using a WHERE clause
+SELECT
+  start_station_name,
+  count(*) num_trips
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime BETWEEN '2018-05-01' AND '2018-05-30'
+GROUP BY
+ start_station_name
+ORDER BY
+ num_trips DESC
+
+
+
+
+— Filter using a HAVING clause
+SELECT
+  start_station_name,
+  count(*) num_trips
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime BETWEEN '2018-05-01' AND '2018-05-30'
+GROUP BY
+ start_station_name
+HAVING
+  count(*) > 10000
+ORDER BY
+ num_trips DESC
+
+
+
+
+— Trip duration ordered by start time, filtered by data and station name
+SELECT
+ start_station_name,
+ starttime,
+ tripduration
+FROM
+`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+starttime BETWEEN '2018-05-01' AND '2018-05-31'
+AND
+start_station_name like 'E%'
+ORDER BY
+ starttime
+
+
+
+
+— Window functions for moving average
+SELECT
+ start_station_name,
+ starttime,
+ tripduration,
+ AVG(tripduration)
+   OVER (
+     ORDER BY starttime
+     ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS avg_duartion
+FROM
+`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+starttime BETWEEN '2018-05-01' AND '2018-05-31'
+AND
+start_station_name like 'E%'
+ORDER BY
+ starttime

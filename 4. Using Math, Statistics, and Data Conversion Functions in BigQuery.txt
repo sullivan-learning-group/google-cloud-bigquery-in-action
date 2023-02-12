@@ -1,0 +1,52 @@
+﻿– Basic math functions
+SELECT
+ abs(-4) abs_value,
+ log(100, 10) log_value,
+ power(2, 5) power_value
+
+
+– Rounding and truncating
+SELECT
+ ceil(8.3) ceil_value,
+ floor(9.9) floor_value,
+ round(10.8) round_value,
+ trunc(10.8) trunc_value
+
+– Error Division by 0
+SELECT
+ 8 / 4 div1,
+ 8 / 0 div2
+
+
+
+
+— Safe division and multiply
+SELECT
+ 8 / 4 div1,
+ safe_divide(8, 0) div2,
+ safe_multiply(123456789039,8474636356353)
+
+
+— Standard deviation
+SELECT
+ start_station_name,
+ avg(tripduration) avg_duration,
+ stddev(tripduration) stddev_duration
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime BETWEEN '2018-05-01' AND '2018-05-02'
+GROUP BY
+ start_station_name
+
+
+
+
+— Casting and concatenating 
+SELECT
+ 'The trip lasted ' || CAST(tripduration as STRING) || ' minutes.' duration_str
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+WHERE
+ starttime BETWEEN '2018-05-01' AND '2018-05-02'
+LIMIT 10
