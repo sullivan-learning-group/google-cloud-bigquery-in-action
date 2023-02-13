@@ -1,4 +1,9 @@
-﻿– Basic math functions
+﻿Additional information: https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions
+
+
+
+
+– Basic math functions
 SELECT
  abs(-4) abs_value,
  log(100, 10) log_value,

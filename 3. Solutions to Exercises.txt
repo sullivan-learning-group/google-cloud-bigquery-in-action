@@ -1,0 +1,50 @@
+﻿Write a query to return the station ID and name of stations that have more than 70 bikes available.
+SELECT
+ station_id,
+ name
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+WHERE
+ num_bikes_available > 70
+LIMIT
+ 1000
+
+
+
+
+Modify the above query to join the stations table to the trips table.  Add trip duration and bike ID columns to the query.
+SELECT
+ station_id,
+ name,
+ bikeid
+ tripduration
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations` s
+JOIN
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips` t
+ON
+ s.station_id = CAST(start_station_id as STRING)
+WHERE
+ num_bikes_available > 70
+LIMIT
+ 1000
+
+
+
+
+Finally, modify the query to return the minimum and maximum trip durations.
+
+
+SELECT
+ min(tripduration) min_duration,
+ max(tripduration) max_duration
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations` s
+JOIN
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips` t
+ON
+ s.station_id = CAST(start_station_id as STRING)
+WHERE
+ num_bikes_available > 70
+LIMIT
+ 1000
