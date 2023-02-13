@@ -1,0 +1,98 @@
+﻿Additional Resources: 
+https://cloud.google.com/bigquery/docs/reference/standard-sql/arrays
+
+
+– Example arrays 
+WITH
+ Sequences AS (
+   SELECT [0, 1, 1, 2, 3, 5] AS some_numbers UNION ALL
+   SELECT [2, 4, 8, 16, 32] UNION ALL
+   SELECT [5, 10]
+ )
+SELECT * FROM Sequences
+
+
+
+
+– Length of arrays
+WITH Sequences AS
+ (SELECT [0, 1, 1, 2, 3, 5] AS some_numbers
+  UNION ALL SELECT [2, 4, 8, 16, 32] AS some_numbers
+  UNION ALL SELECT [5, 10] AS some_numbers)
+SELECT some_numbers,
+      ARRAY_LENGTH(some_numbers) AS len
+FROM Sequences;
+
+
+– Map from array to set of rows
+SELECT *
+FROM UNNEST(['foo', 'bar', 'baz', 'qux', 'cor', 'gar', 'wal', 'fod'])
+ AS element
+WITH OFFSET AS offset
+ORDER BY offset;
+
+
+
+
+
+
+ Basic Query of a table with structures
+
+
+SELECT
+ visitId,
+ visitStartTime
+FROM
+ `<<your project id>>.google_analytics_sample.ga_sessions_20170801`
+LIMIT
+ 1000
+
+
+– Querying a nested structure
+SELECT
+ visitId,
+ visitStartTime,
+ device
+FROM
+ `<<your project id>>.google_analytics_sample.ga_sessions_20170801`
+LIMIT
+ 1000
+
+
+— Reference an attribute of a struct
+SELECT
+ visitId,
+ visitStartTime,
+ device.operatingSystem
+FROM
+ `<<your project id>>.google_analytics_sample.ga_sessions_20170801`
+LIMIT
+ 1000
+
+
+
+
+— Referencing on element of an array
+SELECT
+ visitId,
+ visitStartTime,
+ device.operatingSystem,
+ hits[OFFSET(0)] hit0
+FROM
+ `<<your project id>>.google_analytics_sample.ga_sessions_20170801`
+LIMIT
+ 1000
+
+
+
+
+– Unnesting
+SELECT
+visitId,
+visitStartTime,
+device.operatingSystem,
+gas_hits
+FROM
+`<<your project id>>.google_analytics_sample.ga_sessions_20170801` gas
+CROSS JOIN UNNEST(gas.hits)as gas_hits
+LIMIT 10

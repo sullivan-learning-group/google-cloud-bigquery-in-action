@@ -5,7 +5,7 @@ SELECT
  EXTRACT(DAYOFWEEK FROM starttime) day_of_week,
  EXTRACT(DAYOFYEAR FROM starttime) day_of_year
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime is NOT NULL
 LIMIT
@@ -19,7 +19,7 @@ SELECT
  starttime,
  DATE_ADD(starttime, INTERVAL 1 WEEK) week_ahead
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime is NOT NULL
 LIMIT
@@ -33,7 +33,7 @@ SELECT
  starttime,
  DATE_TRUNC(starttime, DAY)
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime IS NOT NULL
 LIMIT

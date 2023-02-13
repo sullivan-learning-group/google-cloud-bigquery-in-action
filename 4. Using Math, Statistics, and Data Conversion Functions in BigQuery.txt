@@ -16,6 +16,7 @@ SELECT
  floor(9.9) floor_value,
  round(10.8) round_value,
  trunc(10.8) trunc_value
+ round(12.34567, 2) round_2_places
 
 – Error Division by 0
 SELECT
@@ -38,7 +39,7 @@ SELECT
  avg(tripduration) avg_duration,
  stddev(tripduration) stddev_duration
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime BETWEEN '2018-05-01' AND '2018-05-02'
 GROUP BY
@@ -51,7 +52,7 @@ GROUP BY
 SELECT
  'The trip lasted ' || CAST(tripduration as STRING) || ' minutes.' duration_str
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime BETWEEN '2018-05-01' AND '2018-05-02'
 LIMIT 10

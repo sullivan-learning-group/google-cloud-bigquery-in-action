@@ -7,7 +7,7 @@
 SELECT
  lpad(name,20, '_')
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 LIMIT 10
 
 
@@ -17,7 +17,7 @@ SELECT
   item,
   LEFT(item, 3) left_3
 FROM
- `scenic-energy-335022.bigquery_in_action.produce`
+ `<<your project id>>.bigquery_in_action.produce`
 
 
 
@@ -34,7 +34,7 @@ SELECT
  name,
  INSTR(name, ' & ')
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 LIMIT
  100
 
@@ -43,7 +43,7 @@ LIMIT
 SELECT
  name
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 WHERE
     INSTR(name, ' & ') > 0
 LIMIT
@@ -58,7 +58,7 @@ SELECT
  SUBSTR(name,1,3) letter_3,
  SUBSTR(name,5,4) letter_5_4
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 LIMIT
  100
 
@@ -70,7 +70,7 @@ SELECT
  name,
  split(name, '&') amp_split
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 LIMIT
  100
 

@@ -1,0 +1,6 @@
+﻿SELECT
+visitId,
+visitStartTime,
+totals.pageviews
+FROM
+`<<your project id>>.google_analytics_sample.ga_sessions_20170801`

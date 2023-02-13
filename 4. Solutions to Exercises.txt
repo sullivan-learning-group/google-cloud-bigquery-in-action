@@ -2,7 +2,7 @@
 SELECT
  ROUND(tripduration / 60,2)
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  tripduration IS NOT NULL
 LIMIT
@@ -15,7 +15,7 @@ Write a query to find the standard deviation of trip duration
 SELECT
 stddev(tripduration) stddev_duration
 FROM
-`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+`<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  tripduration IS NOT NULL
 
@@ -28,7 +28,7 @@ Write a query to convert trip duration to a string and append “ min” as a su
 SELECT
 CAST(tripduration AS STRING) || '_min'
 FROM
-`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+`<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  tripduration IS NOT NULL
 LIMIT 1000

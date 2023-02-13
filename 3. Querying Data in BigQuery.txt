@@ -3,7 +3,7 @@ SELECT
   station_id,
   name
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations`
 LIMIT
  1000
 
@@ -17,9 +17,9 @@ SELECT
   rental_methods,
   tripduration
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations` s
+ `<<your project id>>.nyc_citi_bike_trips.citibike_stations` s
 JOIN
-  `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips` t
+  `<<your project id>>.nyc_citi_bike_trips.citibike_trips` t
 ON
   s.station_id = CAST(t.start_station_id as STRING)
 LIMIT
@@ -32,7 +32,7 @@ SELECT
  avg(tripduration),
  max(tripduration),
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime between '2018-05-01' and '2018-05-31'
 
@@ -45,7 +45,7 @@ SELECT
  avg(tripduration) avg_trip,
  max(tripduration) max_trip,
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime between '2018-05-01' and '2018-05-31'
 
@@ -59,7 +59,7 @@ SELECT
  avg(tripduration) avg_trip,
  max(tripduration) max_trip,
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime between '2018-05-01' and '2018-05-31'
 
@@ -72,7 +72,7 @@ SELECT
  category,
  amount
 FROM
- `scenic-energy-335022.bigquery_in_action.produce`
+ `<<your project id>>.bigquery_in_action.produce`
 
 
 – Group by
@@ -80,7 +80,7 @@ SELECT
  category,
  sum(amount)
 FROM
- `scenic-energy-335022.bigquery_in_action.produce`
+ `<<your project id>>.bigquery_in_action.produce`
 group by
   category
 
@@ -92,7 +92,7 @@ SELECT
   start_station_name,
   count(*) num_trips
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 GROUP BY
  start_station_name
 ORDER BY
@@ -104,7 +104,7 @@ SELECT
   start_station_name,
   count(*) num_trips
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime BETWEEN '2018-05-01' AND '2018-05-30'
 GROUP BY
@@ -120,7 +120,7 @@ SELECT
   start_station_name,
   count(*) num_trips
 FROM
- `scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+ `<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
  starttime BETWEEN '2018-05-01' AND '2018-05-30'
 GROUP BY
@@ -139,7 +139,7 @@ SELECT
  starttime,
  tripduration
 FROM
-`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+`<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
 starttime BETWEEN '2018-05-01' AND '2018-05-31'
 AND
@@ -160,7 +160,7 @@ SELECT
      ORDER BY starttime
      ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS avg_duartion
 FROM
-`scenic-energy-335022.nyc_citi_bike_trips.citibike_trips`
+`<<your project id>>.nyc_citi_bike_trips.citibike_trips`
 WHERE
 starttime BETWEEN '2018-05-01' AND '2018-05-31'
 AND
