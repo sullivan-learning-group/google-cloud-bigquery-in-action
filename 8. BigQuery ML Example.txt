@@ -1,0 +1,29 @@
+﻿f– Create a model
+CREATE OR REPLACE MODEL `bigquery_in_action.penguins_model`
+OPTIONS
+ (model_type='linear_reg',
+ input_label_cols=['body_mass_g']) AS
+SELECT
+ *
+FROM
+ `scenic-energy-335022.bigquery_in_action.penguins`
+
+
+
+
+— Use the model to make predictions
+SELECT
+ *
+FROM
+ ML.PREDICT(MODEL `scenic-energy-335022.bigquery_in_action.penguins_model`,
+   (
+   SELECT
+     species,
+     island,
+     culmen_length_mm,
+     culmen_depth_mm,
+     flipper_length_mm,
+     sex
+   FROM
+     `scenic-energy-335022.bigquery_in_action.penguins`
+   WHERE island = "Biscoe"))
