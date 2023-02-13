@@ -1,0 +1,29 @@
+﻿Left pad the station ID to 10 characters using a space as a padding character.
+
+
+SELECT
+ LPAD(station_id, 10, ' ')
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 1000
+
+
+
+Write a query to return the first 5 characters of the station name
+SELECT
+ SUBSTR(name,0,5)
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 1000
+
+
+
+ Write a query to split station name using a space as the delimiter
+SELECT
+ split(name,' ')
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 1000

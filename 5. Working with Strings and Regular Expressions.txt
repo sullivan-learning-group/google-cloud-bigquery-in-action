@@ -1,0 +1,105 @@
+﻿Additional information: https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions
+
+
+
+
+– LPAD example
+SELECT
+ lpad(name,20, '_')
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT 10
+
+
+
+— LEFT function
+SELECT
+  item,
+  LEFT(item, 3) left_3
+FROM
+ `scenic-energy-335022.bigquery_in_action.produce`
+
+
+
+
+— FORMAT
+SELECT
+  FORMAT('%d', 10) simple_integer,
+  FORMAT("%'d", 123456789) int_w_commas,
+  FORMAT('%f %E', 1.1, 2.2) float_formated
+
+
+– INSTR
+SELECT
+ name,
+ INSTR(name, ' & ')
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 100
+
+
+–INSTR as Filter
+SELECT
+ name
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+WHERE
+    INSTR(name, ' & ') > 0
+LIMIT
+ 100
+
+
+
+
+— SUBSTR
+SELECT
+ name,
+ SUBSTR(name,1,3) letter_3,
+ SUBSTR(name,5,4) letter_5_4
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 100
+
+
+
+
+– SPLIT
+SELECT
+ name,
+ split(name, '&') amp_split
+FROM
+ `scenic-energy-335022.nyc_citi_bike_trips.citibike_stations`
+LIMIT
+ 100
+
+
+
+
+— Simple Common Table Expression (CTE)
+WITH email_list as (
+ SELECT 'foo@example.com' as email
+  UNION ALL SELECT 'bar@example.org'
+  UNION ALL SELECT 'NOT_A_VALID_EMAIL'
+  )
+SELECT
+ email
+FROM
+ email_list
+
+
+
+
+— Use REGEX matching to filter
+WITH email_list as (
+ SELECT 'foo@example.com' as email
+  UNION ALL SELECT 'bar@example.org'
+  UNION ALL SELECT 'NOT_A_VALID_EMAIL'
+  )
+SELECT
+ email
+FROM
+ email_list
+WHERE
+ REGEXP_CONTAINS(email, r'@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')

@@ -1,0 +1,92 @@
+﻿Additional information: https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions
+https://cloud.google.com/bigquery/docs/reference/standard-sql/format-elements
+
+
+
+
+— Current Date
+SELECT
+ current_date() current_date,
+ current_date('America/Los_Angeles') current_date_LA,
+ current_date('Asia/Manila') current_date_Manila,
+ current_date('+0:00') current_date_UTC
+
+
+
+
+– Extracting parts of dates
+SELECT
+ EXTRACT(DAYOFWEEK FROM current_date()) day_of_week,
+ EXTRACT(DAY FROM current_date()) day_of_month,
+ EXTRACT(MONTH FROM current_date()) month_of_year
+
+
+– Constructing dates
+SELECT
+  DATE(2023, 2, 10) AS date_ymd,
+  DATE(DATETIME '2022-12-20 23:59:59') AS date_dt,
+  DATE(TIMESTAMP '2022-11-15 05:30:00+07', 'America/Los_Angeles') AS date_tstz;
+
+
+
+
+— Adding and Subtracting from Dates
+SELECT
+ DATE_ADD(DATE '2023-02-13', INTERVAL 5 DAY) AS five_days_future,
+ DATE_SUB(DATE '2023-02-13', INTERVAL 5 DAY) AS five_days_past;
+
+
+– Difference between dates
+SELECT DATE_DIFF('2023-02-13','2023-01-01', DAY) AS days_diff;
+
+
+— Formatting dates
+SELECT
+ FORMAT_DATE('%x', '2008-12-25') AS US_format,
+ FORMAT_DATE('%F', '2008-12-25') AS ymd_format;
+
+
+— Current date and time
+SELECT CURRENT_DATETIME() as current_date_time
+
+
+
+
+– Constructing date times
+SELECT
+  DATETIME(2008, 12, 25, 05, 30, 00) as datetime_ymdhms,
+
+
+– Adding minutes to a datetime
+SELECT
+ DATETIME "2023-02-12 05:30:00" as original_datetime,
+ DATETIME_ADD(DATETIME "2023-02-12 05:30:00", INTERVAL 30 MINUTE) as later_30_min;
+
+
+
+
+— Truncating datetime to just a date
+SELECT DATE_TRUNC(current_datetime, DAY) AS day;
+
+
+– Current time
+SELECT CURRENT_TIME() as now;
+
+
+
+
+– Constructing time
+SELECT
+  TIME(15, 30, 00) as time_hms
+
+
+— Extracting intervals from time
+SELECT EXTRACT(HOUR FROM TIME "15:30:00") as hour;
+
+
+—Timestamp includes time zone
+SELECT CURRENT_TIMESTAMP() AS now
+
+
+—Timestamp with 0:00 hour
+SELECT TIMESTAMP(DATE "2023-02-13") AS timestamp_date
